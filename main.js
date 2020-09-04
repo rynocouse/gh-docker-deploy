@@ -49,6 +49,7 @@ run(`chmod 600 "$HOME/.ssh/id_rsa"`);
 run(`eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"`);
 
 run(`echo "Add known hosts"`);
+run(`chmod 600 "/etc/ssh/ssh_known_hosts"`);
 
 run(`sudo printf '%s %s\n' "${remote_docker_host}" "${ssh_public_key}" > /etc/ssh/ssh_known_hosts`);
 
