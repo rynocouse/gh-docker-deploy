@@ -42,7 +42,9 @@ run(`echo "Registering SSH keys..."`);
 
 // # register the private key with the agent.
 run(`mkdir -p "$HOME/.ssh"`);
+
 run(`printf '%s\n' "${ssh_private_key}" > "$HOME/.ssh/id_rsa"`);
+
 run(`chmod 600 "$HOME/.ssh/id_rsa"`);
 run(`eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"`);
 
