@@ -50,7 +50,7 @@ run(`eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"`);
 
 run(`echo "Add known hosts"`);
 
-run(`printf '%s %s\n' "${remote_docker_host}" "${ssh_public_key}" > /etc/ssh/ssh_known_hosts`);
+run(`sudo printf '%s %s\n' "${remote_docker_host}" "${ssh_public_key}" > /etc/ssh/ssh_known_hosts`);
 
 run(
     `DOCKER_HOST="tcp://127.0.0.1:2375" docker-compose --log-level debug --host ssh://${remote_docker_host} -f ${stack_file_name} pull --ignore-pull-failures`
