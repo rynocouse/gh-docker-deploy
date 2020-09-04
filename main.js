@@ -10,7 +10,6 @@ const ssh_public_key = core.getInput('ssh_public_key', { required: true });
 const stack_file_name = core.getInput('stack_file_name', { required: true });
 const project_name = core.getInput('project_name', { required: true });
 
-const localImage = core.getInput('local-image') || image;
 const awsRegion = core.getInput('region') || process.env.AWS_DEFAULT_REGION || 'us-east-1';
 
 function run(cmd, options = {}) {
@@ -45,8 +44,7 @@ run(`echo "Registering SSH keys..."`);
 run(`mkdir -p "$HOME/.ssh"`);
 run(`printf '%s\n' "${ssh_private_key}" > "$HOME/.ssh/id_rsa"`);
 run(`chmod 600 "$HOME/.ssh/id_rsa"`);
-run(`eval $(ssh-agent)`);
-run(`ssh-add "$HOME/.ssh/id_rsa"`);
+run(`eval $(ssh-agent) && ssh-add "$HOME/.ssh/id_rsa"`);
 
 run(`echo "Add known hosts"`);
 
