@@ -53,10 +53,6 @@ if (action === 'deploy') {
 
 if (action === 'remove') {
     run(
-        `DOCKER_HOST="tcp://127.0.0.1:2375" docker-compose -p ${project_name} --log-level debug --host ssh://${remote_docker_host} -f ${stack_file_name} stop`
-    );
-    // Kill all stopped containers
-    run(
-        `DOCKER_HOST="tcp://127.0.0.1:2375" docker --host ssh://${remote_docker_host} system prune -a --volumes -f`
+        `DOCKER_HOST="tcp://127.0.0.1:2375" docker-compose -p ${project_name} --log-level debug --host ssh://${remote_docker_host} -f ${stack_file_name} down -v`
     );
 }
