@@ -6,15 +6,14 @@ inputs:
         description: The address of the remote docker host.
     ssh_private_key:
         description: Private SSH Key to access Docker host.
+    action:
+        description: deploy or remove.
+    project_name:
+        description: Name of the docker project eg the -p flag in docker compose.
     stack_file_name:
         description: Docker compose file name default docker-compose.yml.
         required: false
-    region:
-        description: AWS Region to use.  Defaults to us-east-1.
-        required: false
-    direction:
-        description: Whether to "push" or "pull" the image.  Defaults to "push".
-        required: false
+
 runs:
     using: node12
     main: 'main.js'
